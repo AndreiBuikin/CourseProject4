@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('albums', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->integer('realise_year');
+            $table->foreignId('studio_id')->constrained('studios', 'id');
             $table->timestamps();
         });
     }

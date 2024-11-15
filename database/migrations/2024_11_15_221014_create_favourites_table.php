@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('favourites', function (Blueprint $table) {
             $table->id();
+            $table->date('date_of_addition');
+            $table->foreignId('song_id')->constrained('songs', 'id');
+            $table->foreignId('album_id')->constrained('albums', 'id');
+            $table->foreignId('user_id')->constrained('users', 'id');
             $table->timestamps();
         });
     }
