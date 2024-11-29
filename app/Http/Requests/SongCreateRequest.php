@@ -6,14 +6,19 @@ use App\Http\Requests\ApiRequest;
 
 class SongCreateRequest extends ApiRequest
 {
+    public function authorize(): bool
+    {
+        return true;
+    }
     public function rules()
     {
         return [
             'title' => 'required|string|max:255', // Название песни
-            'artist_id' => 'required|integer|exists:artists,id', // ID исполнителя
-            'genre_id' => 'nullable|integer|exists:genres,id', // ID жанра (необязательно)
-            'release_date' => 'nullable|date', // Дата выпуска песни
+            'release_year' => 'nullable|int', // Дата выпуска песни
             'duration' => 'nullable|integer|min:1', // Продолжительность песни (в секундах)
+            'album_id' => 'required|integer|exists:albums,id',
+            'studio_id' => 'nullable|integer|exists:studios,id',
+            'agerating_id' => 'required|integer|exists:ageratings,id', // ID жанра (необязательно)
         ];
     }
 

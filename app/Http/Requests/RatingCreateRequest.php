@@ -6,12 +6,18 @@ use App\Http\Requests\ApiRequest;
 
 class RatingCreateRequest extends ApiRequest
 {
+    public function authorize(): bool
+    {
+        return true;
+    }
     public function rules()
     {
         return [
             'song_id' => 'required|integer|exists:songs,id', // ID оцениваемой песни
             'score' => 'required|integer|min:1|max:5', // Оценка в диапазоне от 1 до 5
             'review_text' => 'nullable|string|max:500', // Текст отзыва (необязательно)
+            'album_id' => 'required|integer|exists:albums,id',
+            'user_id' => 'required|integer|exists:users,id',
         ];
     }
 

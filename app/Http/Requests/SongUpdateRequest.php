@@ -6,6 +6,10 @@ use App\Http\Requests\ApiRequest;
 
 class SongUpdateRequest extends ApiRequest
 {
+    public function authorize(): bool
+    {
+        return true;
+    }
     public function rules()
     {
         return [

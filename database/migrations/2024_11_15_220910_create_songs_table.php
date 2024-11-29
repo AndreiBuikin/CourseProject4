@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->date('release_year');
-            $table->time('duration');
+            $table->integer('duration');
             $table->foreignId('album_id')->constrained('albums', 'id');
             $table->foreignId('studio_id')->constrained('studios', 'id');
             $table->foreignId('agerating_id')->constrained('ageratings', 'id');
